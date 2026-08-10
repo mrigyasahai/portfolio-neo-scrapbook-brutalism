@@ -3,7 +3,7 @@ import { cn } from "@/lib/cn";
 
 type ButtonProps = {
   href?: string;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "dark";
   size?: "md" | "lg";
   withArrow?: boolean;
   type?: "button" | "submit";
@@ -23,6 +23,7 @@ const variantClasses: Record<NonNullable<ButtonProps["variant"]>, string> = {
   primary: "rounded-pill bg-emphasis text-ink shadow-hard-lg hover:shadow-hard-md",
   secondary:
     "rounded-card bg-white text-ink shadow-hard-sm hover:shadow-hard-md",
+  dark: "rounded-pill bg-ink text-white shadow-hard-lg hover:shadow-hard-md",
 };
 
 /**
