@@ -43,7 +43,7 @@ export function Button({
   children,
 }: ButtonProps) {
   const classes = cn(
-    "sticker inline-flex items-center justify-center gap-2 border-2 border-ink font-bold uppercase tracking-[0.08em]",
+    "sticker sticker-link group inline-flex cursor-pointer items-center justify-center gap-2 border-2 border-ink font-bold uppercase tracking-[0.08em]",
     sizeClasses[size],
     variantClasses[variant],
     className
@@ -53,7 +53,11 @@ export function Button({
     <>
       {children}
       {withArrow && (
-        <ArrowRight aria-hidden="true" strokeWidth={2.75} className="h-4 w-4" />
+        <ArrowRight
+          aria-hidden="true"
+          strokeWidth={2.75}
+          className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5"
+        />
       )}
     </>
   );

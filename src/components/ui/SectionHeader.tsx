@@ -10,7 +10,8 @@ type SectionHeaderProps = {
 
 /**
  * The numbered "tab" that opens every section band — instant orientation.
- * Mono index (orange) + mono eyebrow, then display H2, optional right action.
+ * Index is a white chip so the orange stays AA-visible on any band color;
+ * mono eyebrow follows in ink.
  */
 export function SectionHeader({
   index,
@@ -21,9 +22,12 @@ export function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <header className={cn("w-full", className)}>
-      <div className="flex items-baseline gap-3 font-mono text-sm tracking-[0.08em]">
-        <span aria-hidden="true" className="font-bold text-brand">
-          [{index}]
+      <div className="flex items-center gap-3 font-mono text-sm tracking-[0.08em]">
+        <span
+          aria-hidden="true"
+          className="inline-flex items-center border-2 border-ink bg-white px-2 py-0.5 font-bold text-brand"
+        >
+          {index}
         </span>
         <span className="font-bold">{eyebrow}</span>
       </div>

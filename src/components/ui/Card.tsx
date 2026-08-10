@@ -1,7 +1,7 @@
 import { cn } from "@/lib/cn";
 
 type CardFill = "white" | "energy" | "voice" | "checkpoint" | "lav" | "clear";
-type CardVariant = "standard" | "tossed" | "featured" | "receipt" | "stat";
+type CardVariant = "standard" | "tossed" | "featured" | "receipt";
 
 const fillClasses: Record<CardFill, string> = {
   white: "bg-white",
@@ -17,7 +17,6 @@ const variantClasses: Record<CardVariant, string> = {
   tossed: "shadow-hard-md",
   featured: "shadow-hard-lg",
   receipt: "shadow-hard-sm",
-  stat: "shadow-hard-sm",
 };
 
 const paddingClasses: Record<CardVariant, string> = {
@@ -25,7 +24,6 @@ const paddingClasses: Record<CardVariant, string> = {
   tossed: "p-6 md:p-8",
   featured: "p-6 md:p-10",
   receipt: "p-5 md:p-6",
-  stat: "p-5",
 };
 
 type CardProps = {
@@ -38,8 +36,8 @@ type CardProps = {
 
 /**
  * The universal card recipe: 2px ink border + hard shadow + optional rotation.
- * Factual variants (stat, receipt, featured, standard) never rotate.
- * Tossed cards carry .tilt → they straighten on hover.
+ * Factual variants (receipt, featured, standard) never rotate.
+ * Tossed cards carry .tilt → they straighten on hover (opinionated content only).
  */
 export function Card({
   variant = "standard",
@@ -59,7 +57,11 @@ export function Card({
         rotated && "tilt",
         className
       )}
-      style={rotated ? { transform: `rotate(${rotate}deg)` } : undefined}
+      style={
+        rotated
+          ? ({ "--tilt": `rotate(${rotate}deg)` } as React.CSSProperties)
+          : undefined
+      }
     >
       {children}
     </div>

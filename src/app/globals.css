@@ -11,10 +11,12 @@
   --paper: #f3eee1;
   --ink: #141414;
   --white: #ffffff;
-  --muted: #6b6b6b;
+  /* Muted/brand are text tokens — darkened to hold WCAG AA (≥4.5) on paper, white,
+     and every pastel band. Decorative fills may use brighter variants elsewhere. */
+  --muted: #4d4d4d;
   --emphasis: #f5c242;
   --voice: #aacbee;
-  --brand: #e07a2c;
+  --brand: #b04a0c;
   --energy: #f4a6c6;
   --checkpoint: #a9e0c4;
   --deco-lav: #c6b7e3;
@@ -151,13 +153,22 @@
   box-shadow: 0 0 0 0 var(--ink);
 }
 
-/* Tossed cards straighten on hover. */
+/* Interactive stickers lift a touch on hover (transform-based so the press
+   state above fully overrides it — Tailwind's translate/rotate utilities use
+   separate CSS properties and would compose instead). */
+.sticker-link:hover {
+  transform: translateY(-2px) rotate(-0.75deg);
+}
+
+/* Tossed cards straighten on hover. Rotation is injected via --tilt so the
+   stylesheet's hover rule can override it (inline transform would not). */
 .tilt {
   transition: transform var(--dur-base) var(--ease-snappy);
+  transform: var(--tilt, none);
 }
 .tilt:hover,
 .tilt:focus-visible {
-  transform: rotate(0deg);
+  transform: none;
 }
 
 /* Marquee ticker — duplicated track, seamless loop. */

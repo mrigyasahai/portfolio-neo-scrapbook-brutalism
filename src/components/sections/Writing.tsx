@@ -32,6 +32,10 @@ export function Writing() {
 
         <Reveal delay={0.05} className="mt-12 overflow-x-auto">
           <table className="w-full min-w-[540px] border-collapse text-left">
+            <caption className="sr-only">
+              Documentation and notes by {site.name}: title, format, topic, and
+              year.
+            </caption>
             <thead>
               <tr className="border-b-2 border-ink font-mono text-xs uppercase tracking-[0.08em]">
                 <th className="pb-3 pr-4 font-bold">#</th>
@@ -47,7 +51,7 @@ export function Writing() {
                   key={item.slug}
                   className="border-b border-dashed border-ink/30 last:border-b-0"
                 >
-                  <td className="py-3 pr-4 font-mono text-sm font-bold text-brand">
+                  <td className="py-3 pr-4 font-mono text-sm font-bold">
                     {String(i + 1).padStart(2, "0")}
                   </td>
                   <td className="py-3 pr-4 font-semibold">{item.title}</td>

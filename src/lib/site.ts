@@ -29,8 +29,6 @@ export type ToolkitRow = [string, string];
  */
 export const site = {
   name: "Mrigya Sahai",
-  firstName: "Mrigya",
-  roleTag: "product person who builds",
   roles: [
     "Product Manager",
     "Product Builder",
@@ -97,8 +95,6 @@ export const site = {
 
   methodMarginNote:
     "I've never seen a good product idea die because it was documented too well.",
-  featuredMarginNote:
-    "The play: write the runbook before the code. It made the build boring — which is exactly what you want from ops.",
   writingMarginNote:
     "Docs are the product I write them first. Readable systems ship faster.",
 

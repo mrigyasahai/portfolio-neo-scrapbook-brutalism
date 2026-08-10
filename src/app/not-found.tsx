@@ -17,7 +17,7 @@ export default function NotFound() {
       <div className="mt-8">
         <Link
           href="/"
-          className="sticker inline-flex items-center justify-center gap-2 rounded-pill border-2 border-ink bg-emphasis px-6 py-3 font-bold uppercase tracking-[0.08em] text-ink shadow-hard-lg hover:shadow-hard-md"
+          className="sticker sticker-link inline-flex items-center justify-center gap-2 rounded-pill border-2 border-ink bg-emphasis px-6 py-3 font-bold uppercase tracking-[0.08em] text-ink shadow-hard-lg hover:shadow-hard-md"
         >
           Back to the start
         </Link>

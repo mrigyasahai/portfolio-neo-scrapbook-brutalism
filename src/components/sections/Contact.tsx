@@ -45,7 +45,13 @@ export function Contact() {
           </div>
           <div className="flex flex-wrap gap-2">
             {site.links.map((link) => (
-              <TagPill key={link.label} as="a" href={link.href}>
+              <TagPill
+                key={link.label}
+                as="a"
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              >
                 {link.label}
               </TagPill>
             ))}

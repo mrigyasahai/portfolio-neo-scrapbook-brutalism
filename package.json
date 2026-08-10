@@ -16,7 +16,6 @@
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.468.0",
     "next": "^15.5.0",
-    "next-mdx-remote-client": "^2.1.11",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "server-only": "^0.0.1"
@@ -25,7 +24,6 @@
     "@eslint/eslintrc": "^3.3.6",
     "@next/eslint-plugin-next": "15.5.23",
     "@tailwindcss/postcss": "^4",
-    "@types/mdx": "^2.0.13",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

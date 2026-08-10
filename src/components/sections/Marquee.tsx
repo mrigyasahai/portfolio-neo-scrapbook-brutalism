@@ -12,7 +12,7 @@ export function Marquee() {
       aria-hidden="true"
       className="marquee overflow-hidden border-b-2 border-ink bg-ink py-4 text-white"
     >
-      <div className="animate-marquee flex w-max items-center">
+      <div className="animate-marquee flex w-max items-center will-change-transform">
         {track.map((item, i) => (
           <span
             key={i}

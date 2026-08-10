@@ -3,7 +3,22 @@ import { Card } from "@/components/ui/Card";
 import { TagPill } from "@/components/ui/TagPill";
 import { Button } from "@/components/ui/Button";
 import { StickyNote } from "@/components/ui/StickyNote";
-import { BotSticker } from "@/components/icons/stickers";
+import {
+  BotSticker,
+  BoxSticker,
+  GearSticker,
+  TagSticker,
+} from "@/components/icons/stickers";
+
+/** Sticker chosen by the story's hat — AI → bot, commerce → box, docs → tag. */
+function StickerFor({ hat, className }: { hat: string; className?: string }) {
+  const key = hat.toUpperCase();
+  if (key.includes("AI")) return <BotSticker className={className} />;
+  if (key.includes("SHOPIFY") || key.includes("COMMERCE"))
+    return <BoxSticker className={className} />;
+  if (key.includes("DOC")) return <TagSticker className={className} />;
+  return <GearSticker className={className} />;
+}
 
 /** Featured case study — the single story that breaks the grid. */
 export function FeaturedCaseStudy({ item }: { item: WorkItem }) {
@@ -13,7 +28,7 @@ export function FeaturedCaseStudy({ item }: { item: WorkItem }) {
       fill="energy"
       className="relative flex flex-col gap-6 md:flex-row md:items-start"
     >
-      <BotSticker className="h-16 w-16 shrink-0 md:h-20 md:w-20" />
+      <StickerFor hat={item.hat} className="h-16 w-16 shrink-0 md:h-20 md:w-20" />
       <div className="flex-1">
         <div className="flex flex-wrap items-center gap-3 font-mono text-xs font-bold tracking-[0.08em]">
           <span className="border-2 border-ink bg-white px-2 py-0.5">

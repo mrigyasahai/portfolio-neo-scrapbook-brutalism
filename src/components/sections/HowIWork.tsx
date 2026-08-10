@@ -33,7 +33,11 @@ export function HowIWork() {
         <div className="mt-12 grid gap-5 md:grid-cols-2">
           {site.principles.map((principle, i) => (
             <Reveal key={principle.index} delay={(i % 2) * 0.08}>
-              <Card className="flex h-full flex-col">
+              <Card
+                variant="tossed"
+                rotate={i % 2 === 0 ? -0.75 : 0.75}
+                className="flex h-full flex-col"
+              >
                 <p className="font-mono text-sm font-bold text-brand">
                   [{principle.index}]
                 </p>

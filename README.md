@@ -74,6 +74,9 @@ link: "..."
 
 The whole design process is captured in `docs/`: reference analysis, adaptation rules, information architecture, tokens, wireframes, review, narrative, component system, implementation plan.
 
+- **`docs/DEPLOYMENT.md`** — step-by-step deployment checklist (domain, Vercel, Lighthouse, post-deploy verification).
+- **`PROJECT_STATUS.md`** — what's done, every remaining placeholder, known limitations, and recommended next steps.
+
 ## Deploy
 
 Static output, ready for Vercel / Netlify / any host serving `out/` or via `next start`.

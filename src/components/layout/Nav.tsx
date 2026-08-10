@@ -51,10 +51,10 @@ export function Nav() {
                     href={item.href}
                     aria-current={isActive ? "true" : undefined}
                     className={cn(
-                      "block whitespace-nowrap px-5 py-2.5 text-xs font-bold uppercase tracking-[0.08em] transition-colors",
+                      "block cursor-pointer whitespace-nowrap px-5 py-3 text-xs font-bold uppercase tracking-[0.08em] transition-colors",
                       isActive
                         ? "bg-ink text-white"
-                        : "bg-white text-ink hover:bg-emphasis"
+                        : "bg-white text-ink hover:bg-emphasis active:bg-brand active:text-white"
                     )}
                   >
                     {item.label}

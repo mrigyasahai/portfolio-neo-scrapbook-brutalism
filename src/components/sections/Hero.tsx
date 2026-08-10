@@ -28,9 +28,12 @@ export function Hero() {
       />
 
       <div className="container-p relative py-[clamp(4rem,9vw,7.5rem)]">
-        <div className="flex items-baseline gap-3 font-mono text-sm tracking-[0.08em]">
-          <span aria-hidden="true" className="font-bold text-brand">
-            [01]
+        <div className="flex items-center gap-3 font-mono text-sm tracking-[0.08em]">
+          <span
+            aria-hidden="true"
+            className="inline-flex items-center border-2 border-ink bg-white px-2 py-0.5 font-bold text-brand"
+          >
+            01
           </span>
           <span className="font-bold">INDEX</span>
           <span className="text-muted">/ first page</span>
@@ -80,7 +83,6 @@ export function Hero() {
         </div>
       </div>
 
-      <Doodle type="asterisk" className="absolute left-[42%] top-10 h-8 w-8" />
       <Doodle type="dots" className="absolute bottom-8 right-12 hidden md:block" />
     </section>
   );

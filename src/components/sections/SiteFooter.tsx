@@ -10,7 +10,7 @@ export function SiteFooter() {
         <p>© {new Date().getFullYear()} · {site.name}</p>
         <p className="text-white/70">{site.footerNote}</p>
         <p>
-          <span className="text-brand">STATUS</span> {site.status}
+          <span className="text-emphasis">STATUS</span> {site.status}
         </p>
       </div>
     </footer>
