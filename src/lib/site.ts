@@ -43,7 +43,8 @@ export const site = {
   scriptNote: "that's me",
   metaDescription:
     "Mrigya Sahai is a product manager, product builder, AI builder, documentation engineer and Shopify specialist. I solve product problems and I build the products that fix them.",
-  url: "https://example.com/[to-fill-your-domain]",
+  // [TO FILL] — replace with your real domain before deploying (must be a valid URL).
+  url: "https://example.com",
   email: "hello@[TO-FILL-EMAIL].com",
   status: "OPEN TO WORK",
 

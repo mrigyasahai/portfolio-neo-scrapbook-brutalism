@@ -70,6 +70,27 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        name: site.name,
+        url: site.url,
+        email: site.email,
+        jobTitle: [...site.roles],
+        description: site.metaDescription,
+        knowsAbout: ["product management", "AI agents", "Shopify", "technical documentation"],
+      },
+      {
+        "@type": "WebSite",
+        name: site.name,
+        url: site.url,
+        description: site.metaDescription,
+      },
+    ],
+  };
+
   return (
     <html
       lang="en"
@@ -86,6 +107,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Nav />
         {children}
         <SiteFooter />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </body>
     </html>
   );
