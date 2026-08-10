@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Neo-Scrapbook Brutalism
 
-## Getting Started
+Personal portfolio for **Mrigya Sahai** — product manager & builder, AI builder, documentation engineer, Shopify specialist.
 
-First, run the development server:
+A single-page scroll narrative: **"Swiss-grid discipline wearing a torn-paper, marker-highlighted, brutalist-sticker costume."** Every component is reusable; every content surface is data-driven.
+
+## Stack
+
+- **Next.js 15** (App Router, RSC-first, static output) · **TypeScript**
+- **Tailwind CSS v4** (design tokens → `@theme` in `src/app/globals.css`)
+- **Framer Motion** — scroll reveals only (hovers/presses are pure CSS)
+- **MDX** (`src/content/`) + `gray-matter` + `server-only` — case studies & writing
+- **next/font** — Archivo Black / Archivo / Caveat / Space Mono (all local builds, `display=swap`)
+- pnpm · ESLint · Prettier
+
+## Commands
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm dev        # local dev server
+pnpm build      # production build (static)
+pnpm start      # serve production build
+pnpm lint       # eslint
+pnpm format     # prettier --write
+pnpm typecheck  # tsc --noEmit
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Architecture
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  app/            layout, page, metadata routes (sitemap, robots, OG image, icon, not-found)
+  components/
+    layout/       Nav (scrollspy), SiteFooter
+    sections/     Hero, Marquee, HowIWork, Work, Writing, Timeline, About, Contact
+    content/      CaseStudyCard, FeaturedCaseStudy
+    ui/           Card, Button, SectionHeader, TagPill, StickyNote, HighlightBlock, StatTile, Reveal
+    icons/        stickers.tsx (custom SVG stickers), decorative (doodles, corner blocks)
+  content/
+    work/*.mdx        case studies (frontmatter-driven cards)
+    writing/*.mdx     writing matrix items
+  lib/
+    site.ts           single source of truth for config-level content
+    content.ts        MDX loaders (server-only)
+    cn.ts             classname helper
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Adding content (no component changes needed)
 
-## Learn More
+**Case study** → add `src/content/work/<slug>.mdx`:
 
-To learn more about Next.js, take a look at the following resources:
+```yaml
+---
+slug: my-build
+title: My Build
+metric: "−40%"
+hat: "[AI]"
+year: 2026
+featured: false
+problem: "..."
+move: "..."
+tags: [AI, Python]
+link: "..."
+---
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Writing item** → add `src/content/writing/<slug>.mdx` with `title`, `format`, `topic`, `year`, `readTime`, `excerpt`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Content honesty
 
-## Deploy on Vercel
+- `[TO FILL]` marks every placeholder. **Never ship invented metrics as real** — the site config and case-study frontmatter carry illustrative placeholders that must be replaced with verified numbers before going live.
+- Before deploying: set `site.url` (must be a valid URL — it feeds `sitemap.xml`, `robots.txt`, and the OG image) and `site.email` in `src/lib/site.ts`, then replace the `[TO-FILL]` profile links.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Design docs
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The whole design process is captured in `docs/`: reference analysis, adaptation rules, information architecture, tokens, wireframes, review, narrative, component system, implementation plan.
+
+## Deploy
+
+Static output, ready for Vercel / Netlify / any host serving `out/` or via `next start`.
