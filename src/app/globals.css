@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   NEO-SCRAPBOOK BRUTALISM — DESIGN TOKENS
+   Single source of truth (see docs/04-design-tokens.md + 08-component-system.md).
+   Components consume ONLY utilities derived from these tokens.
+   ========================================================================= */
+
+:root {
+  /* ── Color (role-locked) ─────────────────────────────────────────── */
+  --paper: #f3eee1;
+  --ink: #141414;
+  --white: #ffffff;
+  --muted: #6b6b6b;
+  --emphasis: #f5c242;
+  --voice: #aacbee;
+  --brand: #e07a2c;
+  --energy: #f4a6c6;
+  --checkpoint: #a9e0c4;
+  --deco-lav: #c6b7e3;
+  --deco-teal: #5cb8a6;
+
+  /* ── Border ───────────────────────────────────────────────────────── */
+  --border-w: 2px;
+  --border-w-heavy: 3px;
+
+  /* ── Shadow (hard, zero-blur, offset) ────────────────────────────── */
+  --shadow-hard-sm: 4px 4px 0 0 var(--ink);
+  --shadow-hard-md: 6px 6px 0 0 var(--ink);
+  --shadow-hard-lg: 8px 8px 0 0 var(--ink);
+  --shadow-hard-xlg: 12px 12px 0 0 var(--ink);
+
+  /* ── Radius ───────────────────────────────────────────────────────── */
+  --radius-card: 0px;
+  --radius-soft: 4px;
+  --radius-pill: 999px;
+
+  /* ── Motion ───────────────────────────────────────────────────────── */
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --ease-snappy: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-press: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --marquee-dur: 28s;
+  --reveal-y: 16px;
+
+  /* ── Layout ───────────────────────────────────────────────────────── */
+  --section-y: clamp(4rem, 9vw, 7.5rem);
+  --container: min(1280px, 92vw);
+  --nav-h: 4.25rem;
+}
+
+/* Map tokens into Tailwind v4 theme (inline → utilities reference the
+   :root variables, keeping a single source of truth). */
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-white: var(--white);
+  --color-muted: var(--muted);
+  --color-emphasis: var(--emphasis);
+  --color-voice: var(--voice);
+  --color-brand: var(--brand);
+  --color-energy: var(--energy);
+  --color-checkpoint: var(--checkpoint);
+  --color-lav: var(--deco-lav);
+  --color-teal: var(--deco-teal);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-script: var(--font-script);
+  --font-mono: var(--font-mono);
+
+  --shadow-hard-sm: var(--shadow-hard-sm);
+  --shadow-hard-md: var(--shadow-hard-md);
+  --shadow-hard-lg: var(--shadow-hard-lg);
+  --shadow-hard-xlg: var(--shadow-hard-xlg);
+
+  --radius-card: var(--radius-card);
+  --radius-soft: var(--radius-soft);
+  --radius-pill: var(--radius-pill);
+
+  --duration-fast: var(--dur-fast);
+  --duration-base: var(--dur-base);
+  --ease-snappy: var(--ease-snappy);
+  --ease-press: var(--ease-press);
+}
+
+/* =========================================================================
+   BASE
+   ========================================================================= */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-h) + 1.5rem);
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+
+  ::selection {
+    background-color: var(--emphasis);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--brand);
+    outline-offset: 3px;
+  }
+
+  /* Keyboard/screenreader skip link */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    background: var(--ink);
+    color: var(--white);
+    padding: 0.75rem 1.25rem;
+    border: 2px solid var(--ink);
+  }
+  .skip-link:focus {
+    left: 0;
+  }
+}
+
+/* =========================================================================
+   COMPONENT BEHAVIOR (interaction states from the component system)
+   ========================================================================= */
+
+/* Sticker press: element sinks into its own hard shadow on press. */
+.sticker {
+  transition:
+    transform var(--dur-fast) var(--ease-press),
+    box-shadow var(--dur-fast) var(--ease-press),
+    background-color var(--dur-fast) var(--ease-snappy),
+    color var(--dur-fast) var(--ease-snappy);
+}
+.sticker:active:not(:disabled) {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 0 var(--ink);
+}
+
+/* Tossed cards straighten on hover. */
+.tilt {
+  transition: transform var(--dur-base) var(--ease-snappy);
+}
+.tilt:hover,
+.tilt:focus-visible {
+  transform: rotate(0deg);
+}
+
+/* Marquee ticker — duplicated track, seamless loop. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee var(--marquee-dur) linear infinite;
+}
+@media (hover: hover) {
+  .marquee:hover .animate-marquee,
+  .marquee:focus-within .animate-marquee {
+    animation-play-state: paused;
+  }
+}
+
+/* Faint paper grain overlay (feTurbulence data-URI). */
+.bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* =========================================================================
+   REDUCED MOTION
+   ========================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-marquee {
+    animation: none !important;
+  }
+  .marquee:hover .animate-marquee {
+    animation-play-state: running;
+  }
+}
