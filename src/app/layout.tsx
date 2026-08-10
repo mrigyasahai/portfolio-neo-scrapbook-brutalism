@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Archivo, Archivo_Black, Caveat, Space_Mono } from "next/font/google";
 import { site } from "@/lib/site";
+import { Nav } from "@/components/layout/Nav";
+import { SiteFooter } from "@/components/sections/SiteFooter";
 import "./globals.css";
 
 const display = Archivo_Black({
@@ -73,7 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${display.variable} ${body.variable} ${script.variable} ${mono.variable} h-full`}
     >
-      <body className="min-h-full">
+      <body id="top" className="min-h-full">
         <a className="skip-link" href="#main">
           Skip to content
         </a>
@@ -81,7 +83,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           aria-hidden="true"
           className="bg-grain pointer-events-none fixed inset-0 z-50"
         />
+        <Nav />
         {children}
+        <SiteFooter />
       </body>
     </html>
   );
